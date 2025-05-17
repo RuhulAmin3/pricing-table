@@ -1,7 +1,8 @@
+import { Variant } from "../../types/pricing.types";
 import { StyledButton } from "./styled.button";
 
 interface ButtonProps {
-  variant?: "free" | "basic" | "pro" | "growth";
+  variant?: Variant;
   onClick?: () => void;
   children: React.ReactNode;
 }
@@ -9,7 +10,7 @@ interface ButtonProps {
 // Define a Button component that accepts an onClick handler and children
 const Button: React.FC<ButtonProps> = ({
   children,
-  variant = "free",
+  variant = Variant["FREE"],
   onClick,
 }) => {
   return (

@@ -11,8 +11,9 @@ export const PricingTab: React.FC = () => {
   const { planInfo, pricingPlanStatus } = useAppSelector(
     (state) => state.pricingPlans
   );
-  const dispatch = useAppDispatch();
 
+  const dispatch = useAppDispatch();
+  
   return (
     <TabWrapper>
       <TabButton

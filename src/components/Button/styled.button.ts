@@ -1,18 +1,15 @@
 import styled from "styled-components";
 import { variants } from "./constant";
+import { Variant } from "../../types/pricing.types";
 
-interface StyledButtonProps {
-  $variant?: "free" | "basic" | "pro" | "growth";
-}
-
-export const StyledButton = styled.button<StyledButtonProps>`
+export const StyledButton = styled.button<{ $variant: Variant }>`
   width: 100%;
   padding: 10px 15px;
   border: none;
   font-size: 16px;
   line-height: 24px;
   border-radius: 8px;
-  background-color: ${({ $variant = "free" }) =>
+  background-color: ${({ $variant = Variant["FREE"] }) =>
     variants[$variant].backgroundColor};
   cursor: pointer;
   transition: background-color 0.3s ease;
@@ -20,7 +17,7 @@ export const StyledButton = styled.button<StyledButtonProps>`
   margin-top: 40px;
 
   &:hover {
-    background-color: ${({ $variant = "free" }) =>
+    background-color: ${({ $variant = Variant["FREE"] }) =>
       variants[$variant].hoverColor};
   }
 

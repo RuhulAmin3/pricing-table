@@ -44,3 +44,14 @@ export interface PlanGroup {
   name: string
   plans: Plan[]
 }
+
+// export interface Variant {
+//   $variant: "Free" | "Basic" | "Pro" | "Growth";
+// }
+
+export enum Variant {
+  FREE = "Free",
+  BASIC = "Basic",
+  PRO = "Pro",
+  GROWTH = "Growth",
+}

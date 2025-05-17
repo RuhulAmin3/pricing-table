@@ -1,14 +1,15 @@
-import { PricingCard } from "./PricingCard"
-import { StyledPricingTable } from "./styled.pricingTable"
+import { useAppSelector } from "../../store/hook";
+import { PricingCard } from "./PricingCard";
+import { StyledPricingTable } from "./styled.pricingTable";
 
 export const PricingTable = () => {
-    return (
-        <StyledPricingTable>
-            {
-                Array.from({ length: 4 }, (_, index) => (
-                    <PricingCard key={index} />
-                ))
-            }
-        </StyledPricingTable>
-    )
-}
+  const { plans, pricingPlanStatus } = useAppSelector((state) => state.pricingPlans);
+  return (
+    <StyledPricingTable>
+      {Object.keys(plans).map((planKey) => {
+        const plan = plans[planKey];
+        return <PricingCard key={planKey} plan={plan} pricingPlanStatus={pricingPlanStatus} />;
+      })}
+    </StyledPricingTable>
+  );
+};
