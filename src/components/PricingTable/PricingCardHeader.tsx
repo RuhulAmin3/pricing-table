@@ -1,8 +1,17 @@
+import { InfoSvgIcon } from "../../assets/icons/InfoSvgIcon";
+import { StyledPricingCardHeader, PlanInfo } from "./styled.pricingTable";
+
 export const PricingCardHeader = () => {
     return (
-        <div className="pricing-card-header">
-            <h2>Pricing Plans</h2>
-            <p>Choose the plan that fits your needs</p>
-        </div>
+        <StyledPricingCardHeader>
+            <h4>Free</h4>
+            <h2>Free</h2>
+            <PlanInfo>
+                <p>
+                    Up to <span>500</span> visitors/month
+                </p>
+                <InfoSvgIcon />
+            </PlanInfo>
+        </StyledPricingCardHeader>
     );
 }

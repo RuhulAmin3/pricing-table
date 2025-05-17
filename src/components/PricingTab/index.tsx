@@ -5,14 +5,12 @@ export const PricingTab: React.FC = () => {
         <TabWrapper>
             <TabButton
                 $isActive={true}
-            // onClick={() => dispatch(setBillingPeriod('1_year'))}
             >
                 Billed Monthly
             </TabButton>
             <Divider />
             <TabButton
                 $isActive={false}
-            // onClick={() => dispatch(setBillingPeriod('2_year'))}
             >
                 Billed Yearly
             </TabButton>
