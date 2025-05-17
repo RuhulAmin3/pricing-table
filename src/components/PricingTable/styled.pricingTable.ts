@@ -12,7 +12,6 @@ export const StyledPricingCard = styled.div`
     border: 1px solid #eaeff2;
     border-top: 8px solid red;
     width: 100%;
-    text-align: center;
 `
 export const StyledPricingCardHeader = styled.div`
     display: flex;
@@ -58,3 +57,23 @@ export const PlanInfo = styled.div`
     }
    
     `
+
+export const StyledFeatureLists = styled.div`
+
+    margin-top: 16px;
+
+    h4{
+        font-size: 16px;
+        line-height: 24px;
+        font-weight: 500;
+        padding-block: 10px;
+        color: ${({ theme }) => theme.colors.textColor};
+    }
+`
+
+export const FeatureListItem = styled.div`
+    padding-block: 8px;
+    font-size: 14px;
+    line-height: 14px;
+    color: ${({ theme }) => theme.colors.textColor};
+`
