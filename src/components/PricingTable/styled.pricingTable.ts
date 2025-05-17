@@ -1,9 +1,8 @@
 import styled from "styled-components";
 
 export const StyledPricingTable = styled.div`
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
     gap: 20px;
 `
 
