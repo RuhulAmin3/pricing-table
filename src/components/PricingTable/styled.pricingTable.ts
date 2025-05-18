@@ -26,7 +26,7 @@ export const StyledPricingCardHeader = styled.div<{$variant:Variant}>`
     font-size: 18px;
     line-height: 24px;
     font-weight: 400;
-    color: ${({ theme }) => theme.colors.textColor};
+    color: ${({ theme }) => (theme as any).colors.textColor};
   }
 
   h2 {
@@ -68,7 +68,7 @@ export const StyledFeatureLists = styled.div`
     line-height: 24px;
     font-weight: 500;
     padding-block: 10px;
-    color: ${({ theme }) => theme.colors.textColor};
+    color: ${({ theme }) => (theme as any).colors.textColor};
   }
 `;
 
@@ -76,5 +76,5 @@ export const FeatureListItem = styled.div`
   padding-block: 8px;
   font-size: 14px;
   line-height: 14px;
-  color: ${({ theme }) => theme.colors.textColor};
+  color: ${({ theme }) => (theme as any).colors.textColor};
 `;

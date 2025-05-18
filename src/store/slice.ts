@@ -1,4 +1,4 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, type PayloadAction } from "@reduxjs/toolkit";
 import data from "../assets/data.json";
 import type { Feature, Plan, PlansInfo } from "../types/pricing.types";
 import { freeFeatureList, groupedPlans, proFeatureList } from "./utils";
@@ -9,9 +9,8 @@ type PricingSliceState = {
   proFeatureList: Feature[];
   freeFeatureList: Feature[];
   pricingPlanStatus: string;
+  selectedPricePlan: { name: string; title: string }[];
 };
-
-
 
 const initialState: PricingSliceState = {
   planInfo: data?.plansInfo,
@@ -19,8 +18,8 @@ const initialState: PricingSliceState = {
   proFeatureList: proFeatureList,
   freeFeatureList: freeFeatureList,
   pricingPlanStatus: "1_year",
+  selectedPricePlan: [],
 };
-
 
 const pricingPlanSlice = createSlice({
   name: "pricing-plans",
@@ -29,9 +28,30 @@ const pricingPlanSlice = createSlice({
     setPricingPlanStatus: (state, action) => {
       state.pricingPlanStatus = action.payload;
     },
+
+    setSelectedPricePlan: (
+      state,
+      action: PayloadAction<{ name: string; title: string }>
+    ) => {
+      const existingIndex = state.selectedPricePlan.findIndex(
+        (item) => item.name === action.payload.name
+      );
+
+      if (existingIndex !== -1) {
+        // Update existing
+        state.selectedPricePlan[existingIndex].title = action.payload.title;
+      } else {
+        // Add new
+        state.selectedPricePlan.push({
+          name: action.payload.name,
+          title: action.payload.title,
+        });
+      }
+    },
   },
 });
 
-export const { setPricingPlanStatus } = pricingPlanSlice.actions;
+export const { setPricingPlanStatus, setSelectedPricePlan } =
+  pricingPlanSlice.actions;
 
 export const pricingPlanSliceReducer = pricingPlanSlice.reducer;

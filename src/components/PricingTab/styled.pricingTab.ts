@@ -11,9 +11,9 @@ export const TabWrapper = styled.div`
 
 export const TabButton = styled.div<{ $isActive: boolean }>`
   color: ${(props) => (props.$isActive ? " #b78deb " : " #49687e")};
-  border-bottom: ${(props) => (props.$isActive ? "1px solid #b78deb" : "none")};
+  border-bottom: ${(props) => (props.$isActive ? "1px solid #b78deb" : "1px solid transparent")};
   cursor: pointer;
-  font-weight: ${(props) => (props.$isActive ? "600" : "normal")};
+  font-weight: 600;
   transition: all 0.2s ease;
   position: relative;
   outline: none;

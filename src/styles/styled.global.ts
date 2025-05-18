@@ -17,7 +17,7 @@ body {
   padding: 0;
   min-height: 100vh;
   text-rendering: optimizeSpeed;
-  font-family: ${({ theme }) => theme.fonts.Rubik};
+  font-family: ${({ theme }) => (theme as any).fonts.Rubik};
   font-size: 1rem;
   line-height: 1;
   background-color: #FCFAFE;
@@ -62,8 +62,8 @@ select {
 
 export const RootContainer = styled.div`
   width: 100%;
-  max-width: 1100px;
+  max-width: 1200px;
   margin: 0 auto;
-  padding: 40px ${({ theme }) => theme.spacing?.container || "20px"};
+  padding: 40px ${({ theme }) => (theme as any).spacing?.container || "20px"};
   padding-bottom: 50px;
 `;

@@ -1,21 +1,54 @@
+import { useMemo } from "react";
 import { InfoSvgIcon } from "../../assets/icons/InfoSvgIcon";
+import { useAppDispatch, useAppSelector } from "../../store/hook";
+import { setSelectedPricePlan } from "../../store/slice";
 import type { Plan, Variant } from "../../types/pricing.types";
+import Dropdown from "../Dropdown";
+import Tooltip from "../Tooltip";
+
 import { StyledPricingCardHeader, PlanInfo } from "./styled.pricingTable";
 
 export const PricingCardHeader = ({
   plan,
   pricingPlanStatus,
 }: {
-  plan: Plan;
+  plan: Plan[];
   pricingPlanStatus: string;
 }) => {
-  const { details } = plan;
+  const dispatch = useAppDispatch();
+
+  const { selectedPricePlan } = useAppSelector((state) => state.pricingPlans);
+
+  const selectedPlan = useMemo(() => {
+    return plan?.find((item) => {
+      const selectedPlan = selectedPricePlan.some(
+        (plan) => plan.name === item.name && plan.title === item.title
+      );
+      return selectedPlan;
+    });
+  }, [plan, selectedPricePlan]);
+
+  if (!selectedPlan) return;
+
+  const { name, title, details, text } = selectedPlan;
   const planDetails = details[pricingPlanStatus];
+  
   const { price, price_postfix } = planDetails;
 
+  const handleChange = (value: string | number) => {
+    const selectedPlan = plan.find((item) => item.title === value);
+    if (!selectedPlan) return;
+
+    dispatch(
+      setSelectedPricePlan({
+        name: selectedPlan?.name,
+        title: selectedPlan?.title,
+      })
+    );
+  };
   return (
-    <StyledPricingCardHeader $variant={plan.name as Variant}>
-      <h4>{plan.name}</h4>
+    <StyledPricingCardHeader $variant={name as Variant}>
+      <h4>{name}</h4>
       <div>
         <h2>{price}</h2>
         <p>{price_postfix}</p>
@@ -26,10 +59,32 @@ export const PricingCardHeader = ({
             </del>
           )}
       </div>
-      <PlanInfo $variant={plan.name as Variant}>
-        <p dangerouslySetInnerHTML={{ __html: plan.title }} />
-        <InfoSvgIcon />
-      </PlanInfo>
+
+      {plan?.length > 1 ? (
+        <>
+          <Dropdown
+            onChange={handleChange}
+            value={title}
+            options={plan?.map((item) => {
+              return {
+                label: item.title,
+                value: item.title,
+              };
+            })}
+          ></Dropdown>
+
+          <Tooltip isInfo content={text}>
+            <InfoSvgIcon />
+          </Tooltip>
+        </>
+      ) : (
+        <PlanInfo $variant={name as Variant}>
+          <p dangerouslySetInnerHTML={{ __html: title }} />
+          <Tooltip isInfo content={text}>
+            <InfoSvgIcon />
+          </Tooltip>
+        </PlanInfo>
+      )}
     </StyledPricingCardHeader>
   );
 };
