@@ -29,7 +29,10 @@ export const PricingCard = ({
   }, []);
 
   return (
-    <StyledPricingCard $variant={plan[0].name as Variant}>
+    <StyledPricingCard
+      $isPopular={plan[0].name === "Pro"}
+      $variant={plan[0].name as Variant}
+    >
       <PricingCardHeader plan={plan} pricingPlanStatus={pricingPlanStatus} />
       <PricingFeatureLists
         planName={plan[0].name}

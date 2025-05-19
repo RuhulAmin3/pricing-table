@@ -8,12 +8,34 @@ export const StyledPricingTable = styled.div`
   gap: 16px;
 `;
 
-export const StyledPricingCard = styled.div<{ $variant: Variant }>`
+export const StyledPricingCard = styled.div<{
+  $variant: Variant;
+  $isPopular: boolean;
+}>`
   border-radius: 8px;
   padding: 20px;
+  position: relative;
   border: 1px solid #eaeff2;
   border-top: 8px solid ${({ $variant }) => variants[$variant].primaryColor};
   width: 100%;
+
+  ${({ $isPopular, $variant }: { $isPopular: boolean; $variant: Variant }) =>
+    $isPopular &&
+    `
+    &::before {
+      content: 'Most Popular';
+      position: absolute;
+      top: 5px;
+      right: 5px;
+      
+      background-color: ${variants[$variant].primaryColor};
+      color: white;
+      font-size: 12px;
+      font-weight: 600;
+      padding: 6px 8px;
+      border-radius: 4px;
+    }
+  `}
 `;
 
 export const StyledPricingCardHeader = styled.div<{ $variant: Variant }>`
@@ -86,5 +108,5 @@ export const DynamicFeature = styled.span`
 export const DropdownBox = styled.div`
   display: flex;
   align-items: center;
-  gap:5px;
+  gap: 5px;
 `;
