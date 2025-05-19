@@ -14,7 +14,6 @@ export const PricingCard = ({
   plan: Plan[];
   pricingPlanStatus: string;
 }) => {
-  
   const dispatch = useAppDispatch();
 
   useEffect(() => {
@@ -24,6 +23,7 @@ export const PricingCard = ({
       setSelectedPricePlan({
         name: selectedPlan?.name,
         title: selectedPlan?.title,
+        text: selectedPlan?.text,
       })
     );
   }, []);
@@ -31,7 +31,10 @@ export const PricingCard = ({
   return (
     <StyledPricingCard $variant={plan[0].name as Variant}>
       <PricingCardHeader plan={plan} pricingPlanStatus={pricingPlanStatus} />
-      <PricingFeatureLists isFree={plan[0].name == "Free"} />
+      <PricingFeatureLists
+        planName={plan[0].name}
+        isFree={plan[0].name == "Free"}
+      />
       <Button variant={plan[0].name as Variant}>
         {plan[0].details[pricingPlanStatus].btn_text}
       </Button>

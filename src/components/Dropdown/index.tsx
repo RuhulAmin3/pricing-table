@@ -7,6 +7,8 @@ import {
   DropdownItem,
   DropdownMenu,
 } from "./styled.dropdown";
+import { extractVisitorCount } from "../../store/utils";
+import type { Variant } from "../../types/pricing.types";
 
 interface DropdownOption {
   value: string | number;
@@ -17,14 +19,14 @@ interface DropdownProps {
   options: DropdownOption[];
   value: string | number;
   onChange: (value: string | number) => void;
-  placeholder?: string;
+  variant: Variant;
 }
 
 const Dropdown: React.FC<DropdownProps> = ({
   options,
   value,
   onChange,
-  placeholder = "Select an option",
+  variant,
 }) => {
   const [isOpen, setIsOpen] = useState(false);
 
@@ -60,19 +62,25 @@ const Dropdown: React.FC<DropdownProps> = ({
 
   return (
     <DropdownContainer ref={dropdownRef}>
-      <DropdownButton onClick={handleToggle}>
-        <span dangerouslySetInnerHTML={{ __html: selectedOption?.label }} />
+      <DropdownButton $variant={variant} onClick={handleToggle}>
+        <span>
+          {`Up to ${extractVisitorCount(
+            selectedOption?.label || ""
+          )} visitors/month`}
+        </span>
         <ChevronIcon $isOpen={isOpen} />
       </DropdownButton>
 
       <DropdownMenu $isOpen={isOpen}>
         {options.map((option) => (
           <DropdownItem
+            $variant={variant}
             key={option.value}
             $isSelected={option.value === value}
             onClick={() => handleSelect(option)}
-            dangerouslySetInnerHTML={{ __html: option.label }}
-          />
+          >
+            {`Up to ${extractVisitorCount(option.label)} visitors/month`}
+          </DropdownItem>
         ))}
       </DropdownMenu>
     </DropdownContainer>

@@ -16,3 +16,9 @@ export const proFeatureList = data?.features.filter(
 export const freeFeatureList = data?.features.filter(
   (feature) => feature.is_pro === "0"
 );
+
+
+export const extractVisitorCount = (title: string): string => {
+  const match = title.match(/<strong>(.*?)<\/strong>/);
+  return match ? match[1] : '';
+};

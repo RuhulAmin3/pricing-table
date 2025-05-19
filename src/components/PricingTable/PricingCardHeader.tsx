@@ -6,7 +6,12 @@ import type { Plan, Variant } from "../../types/pricing.types";
 import Dropdown from "../Dropdown";
 import Tooltip from "../Tooltip";
 
-import { StyledPricingCardHeader, PlanInfo } from "./styled.pricingTable";
+import {
+  StyledPricingCardHeader,
+  PlanInfo,
+  DropdownBox,
+} from "./styled.pricingTable";
+import { variants } from "../../constant";
 
 export const PricingCardHeader = ({
   plan,
@@ -32,7 +37,7 @@ export const PricingCardHeader = ({
 
   const { name, title, details, text } = selectedPlan;
   const planDetails = details[pricingPlanStatus];
-  
+
   const { price, price_postfix } = planDetails;
 
   const handleChange = (value: string | number) => {
@@ -43,9 +48,11 @@ export const PricingCardHeader = ({
       setSelectedPricePlan({
         name: selectedPlan?.name,
         title: selectedPlan?.title,
+        text: selectedPlan?.text,
       })
     );
   };
+
   return (
     <StyledPricingCardHeader $variant={name as Variant}>
       <h4>{name}</h4>
@@ -61,8 +68,9 @@ export const PricingCardHeader = ({
       </div>
 
       {plan?.length > 1 ? (
-        <>
+        <DropdownBox>
           <Dropdown
+            variant={name as Variant}
             onChange={handleChange}
             value={title}
             options={plan?.map((item) => {
@@ -74,14 +82,14 @@ export const PricingCardHeader = ({
           ></Dropdown>
 
           <Tooltip isInfo content={text}>
-            <InfoSvgIcon />
+            <InfoSvgIcon color={variants[name as Variant].primaryColor} />
           </Tooltip>
-        </>
+        </DropdownBox>
       ) : (
         <PlanInfo $variant={name as Variant}>
           <p dangerouslySetInnerHTML={{ __html: title }} />
           <Tooltip isInfo content={text}>
-            <InfoSvgIcon />
+            <InfoSvgIcon color={variants[name as Variant].primaryColor} />
           </Tooltip>
         </PlanInfo>
       )}

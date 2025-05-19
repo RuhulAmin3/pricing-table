@@ -9,7 +9,7 @@ type PricingSliceState = {
   proFeatureList: Feature[];
   freeFeatureList: Feature[];
   pricingPlanStatus: string;
-  selectedPricePlan: { name: string; title: string }[];
+  selectedPricePlan: { name: string; title: string; text: string }[];
 };
 
 const initialState: PricingSliceState = {
@@ -31,7 +31,7 @@ const pricingPlanSlice = createSlice({
 
     setSelectedPricePlan: (
       state,
-      action: PayloadAction<{ name: string; title: string }>
+      action: PayloadAction<{ name: string; title: string; text: string }>
     ) => {
       const existingIndex = state.selectedPricePlan.findIndex(
         (item) => item.name === action.payload.name
@@ -40,11 +40,13 @@ const pricingPlanSlice = createSlice({
       if (existingIndex !== -1) {
         // Update existing
         state.selectedPricePlan[existingIndex].title = action.payload.title;
+        state.selectedPricePlan[existingIndex].text = action.payload.text;
       } else {
         // Add new
         state.selectedPricePlan.push({
           name: action.payload.name,
           title: action.payload.title,
+          text: action.payload.text,
         });
       }
     },
