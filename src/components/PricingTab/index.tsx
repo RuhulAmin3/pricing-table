@@ -8,7 +8,7 @@ import {
   TabWrapper,
 } from "./styled.pricingTab";
 
-const PricingTab= () => {
+const PricingTab = () => {
   const { planInfo, pricingPlanStatus } = useAppSelector(
     (state) => state.pricingPlans
   );

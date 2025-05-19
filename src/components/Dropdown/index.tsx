@@ -1,4 +1,4 @@
-// Internal Components
+// Internal Imports
 import { extractVisitorCount } from "../../store/utils";
 import type { Variant } from "../../types/pricing.types";
 import { useDropdown } from "./useDropdown";

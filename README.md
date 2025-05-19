@@ -1,54 +1,44 @@
-# React + TypeScript + Vite
+# 💸 Pricing Plan Component
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A fully responsive, modular, and scalable **Pricing Plan** component. Built with **React**, **Vite**, **Redux** , **Redux Toolkit**, **TypeScript**, and **styled-components** — this module supports flexible plan structures, feature tooltips, and dynamic visitor-based pricing tiers.
 
-Currently, two official plugins are available:
+---
+## 🧩 Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- 🎯 Toggle between **Monthly** and **Yearly** plans
+- 👥 Dynamic visitor-based tier dropdown (e.g., "Up to 1000 visitors/month")
+- 🧠 Integrated with Redux Toolkit store for state management
+- 📝 Tooltips for feature descriptions
+- 🌐 Built with `styled-components`
+- ⚡ Powered by Vite for fast builds
 
-## Expanding the ESLint configuration
+---
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+## 🚀 Quick Start
 
-```js
-export default tseslint.config({
-  extends: [
-    // Remove ...tseslint.configs.recommended and replace with this
-    ...tseslint.configs.recommendedTypeChecked,
-    // Alternatively, use this for stricter rules
-    ...tseslint.configs.strictTypeChecked,
-    // Optionally, add this for stylistic rules
-    ...tseslint.configs.stylisticTypeChecked,
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+### 1. Clone the Repository
+  
+    git clone https://github.com/your-username/pricing-plan.git
+    cd pricing-plan
+2. Install Dependencies
+```bash
+npm install
 ```
-
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
-
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default tseslint.config({
-  plugins: {
-    // Add the react-x and react-dom plugins
-    'react-x': reactX,
-    'react-dom': reactDom,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended typescript rules
-    ...reactX.configs['recommended-typescript'].rules,
-    ...reactDom.configs.recommended.rules,
-  },
-})
+3. Run Development Server
+ ```bash
+npm run dev 
 ```
+Folder Structure
+
+    src/
+    ├── assets/        # JSON data and static assets
+    ├── components/    # Reusable components like Dropdown, Tooltip, PricingCard
+    ├── pages/         # Entry point (e.g., PricingPlanPage)
+    ├── provider/      # Redux provider setup
+    ├── store/         # Redux store & slice
+    ├── styles/        # Styled-components definitions
+    ├── types/         # TypeScript interfaces & types
+    ├── App.tsx        # Root component
+    ├── main.tsx       # App entry point
+    ├── constant.ts    # Global Constant values
+

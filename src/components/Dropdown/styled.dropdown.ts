@@ -63,7 +63,7 @@ export const DropdownItem = styled.div<{
   border-bottom: 1px solid #e2e8f0;
   not-last-child {
     border-bottom: none;
-  };
+  }
 
   background-color: ${({ $isSelected }) =>
     $isSelected ? "#f7fafc" : "transparent"};

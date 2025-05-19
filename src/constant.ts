@@ -1,4 +1,3 @@
-
 export const variants = {
   Free: {
     primaryColor: '#47B5FF',

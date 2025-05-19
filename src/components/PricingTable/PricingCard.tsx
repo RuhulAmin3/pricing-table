@@ -1,5 +1,5 @@
 // External Imports
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 // Internal Imports
 import type { Plan, Variant } from "../../types/pricing.types";
@@ -19,7 +19,6 @@ export const PricingCard = ({
 }) => {
   const dispatch = useAppDispatch();
 
-  // Effect to set selected price plan on initial render
   useEffect(() => {
     const selectedPlan = plan.find((item) => item.title === plan[0].title);
     if (selectedPlan) {
@@ -32,7 +31,7 @@ export const PricingCard = ({
       );
     }
   }, [dispatch, plan]);
-
+ 
   return (
     <StyledPricingCard
       $isPopular={plan[0].name === "Pro"}
@@ -46,7 +45,7 @@ export const PricingCard = ({
         planName={plan[0].name}
         isFree={plan[0].name === "Free"}
       />
-
+      
       {/* Button with variant based on plan */}
       <Button variant={plan[0].name as Variant}>
         {plan[0].details[pricingPlanStatus].btn_text}

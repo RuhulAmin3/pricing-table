@@ -14,9 +14,11 @@ type Props = {
 };
 
 const PricingFeatureLists = ({ isFree, planName }: Props) => {
+
   const { proFeatureList, freeFeatureList, selectedPricePlan } = useAppSelector(
     (state) => state.pricingPlans
   );
+  
   const selectedPlan = selectedPricePlan.find((item) => item.name === planName);
   if (!selectedPlan) return null;
   const featureList = isFree ? freeFeatureList : proFeatureList;

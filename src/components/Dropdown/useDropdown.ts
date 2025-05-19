@@ -1,4 +1,4 @@
-// Internal Imports
+// External Imports
 import { useEffect, useRef, useState } from "react";
 
 export const useDropdown = () => {

@@ -24,7 +24,7 @@ type Props = {
 const PricingCardHeader = ({ plan, pricingPlanStatus }: Props) => {
   const { selectedPlan, planOptions, onPlanChange, showOriginalPrice } =
     usePricingCardLogic(plan, pricingPlanStatus);
-    
+
   if (!selectedPlan) return null;
   const { name, title, details, text } = selectedPlan;
   const { price, price_postfix } = details[pricingPlanStatus];
@@ -61,6 +61,7 @@ const PricingCardHeader = ({ plan, pricingPlanStatus }: Props) => {
           </Tooltip>
         </DropdownContainer>
       ) : (
+        
         // If only one plan, show title and tooltip
         <PlanInfoContainer $variant={name as Variant}>
           <p dangerouslySetInnerHTML={{ __html: title }} />
