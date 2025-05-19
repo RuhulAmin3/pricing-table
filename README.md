@@ -24,8 +24,8 @@ Live Link: [Pricing Plan](https://pricing-planing.netlify.app/)
 
 ### 1. Clone the Repository
   
-    git clone https://github.com/your-username/pricing-plan.git
-    cd pricing-plan
+    git clone https://github.com/RuhulAmin3/pricing-table.git
+    cd pricing-table
 2. Install Dependencies
 ```bash
 npm install
