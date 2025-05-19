@@ -1,8 +1,8 @@
 # 💸 Pricing Plan Component
 
-A fully responsive, modular, and scalable **Pricing Plan** component. Built with **React**, **Vite**, **Redux** , **Redux Toolkit**, **TypeScript**, and **styled-components** — this module supports flexible plan structures, feature tooltips, and dynamic visitor-based pricing tiers.
+A responsive, modular, and scalable **Pricing Plan** component. Built with **React**, **Vite**, **Redux** , **Redux Toolkit**, **TypeScript**, and **styled-components** — this module supports flexible plan structures, feature tooltips, and dynamic visitor-based pricing tiers.
 
-Live Link: ![Pricing Plan](https://pricing-planing.netlify.app/)
+Live Link: [Pricing Plan](https://pricing-planing.netlify.app/)
 
 ---
 
@@ -35,6 +35,7 @@ npm install
 npm run dev 
 ```
 Folder Structure
+
     problems
     ├── problem-2      # Code Optimization Problem is solved here
     ├── problem-3      # Code Refactoring Problem is solved here
