@@ -22,12 +22,7 @@ interface DropdownProps {
   variant: Variant;
 }
 
-const Dropdown: React.FC<DropdownProps> = ({
-  options,
-  value,
-  onChange,
-  variant,
-}) => {
+const Dropdown = ({ options, value, onChange, variant }: DropdownProps) => {
   const { isOpen, toggle, close, dropdownRef } = useDropdown();
 
   const selectedOption = options.find((option) => option.value === value);

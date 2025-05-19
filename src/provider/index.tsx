@@ -5,8 +5,11 @@ import { Provider as ReduxProvider } from "react-redux";
 // internal imports
 import { store } from "../store";
 
-const Provider: React.FC<{ children: ReactNode }> = ({ children }) => {
-    return <ReduxProvider store={store}>{children}</ReduxProvider>;
+type Props = {
+  children: ReactNode;
+};
+const Provider = ({ children }: Props) => {
+  return <ReduxProvider store={store}>{children}</ReduxProvider>;
 };
 
 export default Provider;

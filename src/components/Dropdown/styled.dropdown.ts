@@ -63,7 +63,7 @@ export const DropdownItem = styled.div<{
   border-bottom: 1px solid #e2e8f0;
   not-last-child {
     border-bottom: none;
-  }
+  };
 
   background-color: ${({ $isSelected }) =>
     $isSelected ? "#f7fafc" : "transparent"};
@@ -84,11 +84,11 @@ export const DropdownItem = styled.div<{
 
 export const ChevronIcon = styled.span<{ $isOpen: boolean }>`
   border-style: solid;
-  border-width: 0.15em 0.15em 0 0;
+  border-width: 2.4px 2.4px 0 0;
   content: "";
   display: inline-block;
-  height: 0.45em;
-  width: 0.45em;
+  height: 7.2px;
+  width: 7.2px;
   position: relative;
   transform: ${({ $isOpen }) =>
     $isOpen ? "rotate(-45deg)" : "rotate(135deg)"};

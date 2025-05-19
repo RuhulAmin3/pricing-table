@@ -1,4 +1,7 @@
+// External Imports
 import { useState } from "react";
+
+// Internal Imports
 import {
   TooltipContainer,
   TooltipTrigger,
@@ -11,11 +14,7 @@ interface TooltipProps {
   isInfo?: boolean;
 }
 
-const Tooltip: React.FC<TooltipProps> = ({
-  content,
-  children,
-  isInfo = false,
-}) => {
+const Tooltip = ({ content, children, isInfo = false }: TooltipProps) => {
   const [isVisible, setIsVisible] = useState(false);
 
   return (

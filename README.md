@@ -2,6 +2,12 @@
 
 A fully responsive, modular, and scalable **Pricing Plan** component. Built with **React**, **Vite**, **Redux** , **Redux Toolkit**, **TypeScript**, and **styled-components** — this module supports flexible plan structures, feature tooltips, and dynamic visitor-based pricing tiers.
 
+Live Link: ![Pricing Plan](https://pricing-planing.netlify.app/)
+
+---
+
+![image](https://github.com/user-attachments/assets/6ff5b486-5c4a-46e8-ba24-7428be2d4a89)
+
 ---
 ## 🧩 Features
 
@@ -29,7 +35,9 @@ npm install
 npm run dev 
 ```
 Folder Structure
-
+    problems
+    ├── problem-2      # Code Optimization Problem is solved here
+    ├── problem-3      # Code Refactoring Problem is solved here
     src/
     ├── assets/        # JSON data and static assets
     ├── components/    # Reusable components like Dropdown, Tooltip, PricingCard
@@ -41,4 +49,3 @@ Folder Structure
     ├── App.tsx        # Root component
     ├── main.tsx       # App entry point
     ├── constant.ts    # Global Constant values
-

@@ -17,7 +17,7 @@ type PricingSliceState = {
 const initialState: PricingSliceState = {
   planInfo: data?.plansInfo,
   plans: groupedPlans,
-  proFeatureList, 
+  proFeatureList,
   freeFeatureList,
   pricingPlanStatus: "1_year",
   selectedPricePlan: [],
@@ -45,15 +45,15 @@ const pricingPlanSlice = createSlice({
         state.selectedPricePlan[existingIndex].title = action.payload.title;
         state.selectedPricePlan[existingIndex].text = action.payload.text;
       } else {
-        state.selectedPricePlan.push(action.payload); 
+        state.selectedPricePlan.push(action.payload);
       }
     },
   },
 });
 
-// Export actions 
+// Export actions
 export const { setPricingPlanStatus, setSelectedPricePlan } =
-  pricingPlanSlice.actions; 
+  pricingPlanSlice.actions;
 
 // Export reducer
 export const pricingPlanSliceReducer = pricingPlanSlice.reducer;

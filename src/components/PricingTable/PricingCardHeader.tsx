@@ -26,6 +26,7 @@ const PricingCardHeader = ({ plan, pricingPlanStatus }: Props) => {
     usePricingCardLogic(plan, pricingPlanStatus);
 
   if (!selectedPlan) return null;
+  
   const { name, title, details, text } = selectedPlan;
   const { price, price_postfix } = details[pricingPlanStatus];
 
