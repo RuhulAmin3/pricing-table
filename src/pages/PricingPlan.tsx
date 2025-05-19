@@ -1,14 +1,15 @@
 // Internal imports
 import { RootContainer } from "../styles/styled.global";
-import { PricingTab, PricingTable } from "../components";
+import PricingTable from "../components/PricingTable";
+import PricingTab from "../components/PricingTab";
 
 const PricingPlans = () => {
-    return (
-        <RootContainer>
-            <PricingTab />
-            <PricingTable />
-        </RootContainer>
-    );
-}
+  return (
+    <RootContainer>
+      <PricingTab />
+      <PricingTable />
+    </RootContainer>
+  );
+};
 
 export default PricingPlans;

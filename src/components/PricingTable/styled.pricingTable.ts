@@ -59,7 +59,7 @@ export const StyledPricingCardHeader = styled.div<{ $variant: Variant }>`
   }
 `;
 
-export const PlanInfo = styled.div<{ $variant: Variant }>`
+export const PlanInfoContainer = styled.div<{ $variant: Variant }>`
   padding: 4px 16px;
   border-radius: 50px;
   background-color: ${({ $variant }) => variants[$variant].secondaryColor};
@@ -105,8 +105,23 @@ export const DynamicFeature = styled.span`
   margin-bottom: 5px;
 `;
 
-export const DropdownBox = styled.div`
+export const DropdownContainer = styled.div`
   display: flex;
   align-items: center;
   gap: 5px;
+`;
+
+
+export const PriceWrapper = styled.div`
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 10px;
+  font-size: 14px;
+  margin-bottom: 0.75rem;
+  color: ${({ theme }) => (theme as any).colors.textColor};
+`;
+
+export const OriginalPrice = styled.del`
+  color: #ff424d;
 `;

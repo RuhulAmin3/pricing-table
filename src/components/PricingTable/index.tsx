@@ -1,15 +1,18 @@
+// Internal Imports
+import { StyledPricingTable } from "./styled.pricingTable";
 import { useAppSelector } from "../../store/hook";
 import { PricingCard } from "./PricingCard";
-import { StyledPricingTable } from "./styled.pricingTable";
 
-export const PricingTable = () => {
+const PricingTable = () => {
   const { plans, pricingPlanStatus } = useAppSelector((state) => state.pricingPlans);
   return (
     <StyledPricingTable>
-      {Object.keys(plans).map((planKey) => {
-        const plan = plans[planKey];
-        return <PricingCard key={planKey} plan={plan} pricingPlanStatus={pricingPlanStatus} />;
+      {Object.keys(plans).map((planName) => {
+        const plan = plans[planName];
+        return <PricingCard key={planName} plan={plan} pricingPlanStatus={pricingPlanStatus} />;
       })}
     </StyledPricingTable>
   );
 };
+
+export default PricingTable;

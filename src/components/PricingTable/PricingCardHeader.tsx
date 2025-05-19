@@ -1,115 +1,76 @@
-import { useMemo } from "react";
-import { InfoSvgIcon } from "../../assets/icons/InfoSvgIcon";
-import { useAppDispatch, useAppSelector } from "../../store/hook";
-import { setSelectedPricePlan } from "../../store/slice";
+// External Imports
+import { memo } from "react";
+
+// Internal Imports
 import type { Plan, Variant } from "../../types/pricing.types";
+import { InfoSvgIcon } from "../../assets/icons/InfoSvgIcon";
+import { usePricingCardLogic } from "./usePricingCardLogic";
+import { variants } from "../../constant";
 import Dropdown from "../Dropdown";
 import Tooltip from "../Tooltip";
-
 import {
+  DropdownContainer,
+  OriginalPrice,
+  PlanInfoContainer,
+  PriceWrapper,
   StyledPricingCardHeader,
-  PlanInfo,
-  DropdownBox,
 } from "./styled.pricingTable";
-import { variants } from "../../constant";
-import styled from "styled-components";
 
-const Container = styled.div`
-  display: flex;
-  align-items: flex-end;
-  justify-content: space-between;
-  gap: 10px;
-  font-size: 14px;
-  margin-bottom: 0.75rem;
-  color: ${({ theme }) => (theme as any).colors.textColor};
-`;
-
-const OriginalPrice = styled.del`
-  color: #ff424d;
-`;
-
-export const PricingCardHeader = ({
-  plan,
-  pricingPlanStatus,
-}: {
+type Props = {
   plan: Plan[];
   pricingPlanStatus: string;
-}) => {
-  const dispatch = useAppDispatch();
+};
 
-  const { selectedPricePlan } = useAppSelector((state) => state.pricingPlans);
-
-  const selectedPlan = useMemo(() => {
-    return plan?.find((item) => {
-      const selectedPlan = selectedPricePlan.some(
-        (plan) => plan.name === item.name && plan.title === item.title
-      );
-      return selectedPlan;
-    });
-  }, [plan, selectedPricePlan]);
-
-  if (!selectedPlan) return;
-
+const PricingCardHeader = ({ plan, pricingPlanStatus }: Props) => {
+  const { selectedPlan, planOptions, onPlanChange, showOriginalPrice } =
+    usePricingCardLogic(plan, pricingPlanStatus);
+    
+  if (!selectedPlan) return null;
   const { name, title, details, text } = selectedPlan;
-  const planDetails = details[pricingPlanStatus];
-
-  const { price, price_postfix } = planDetails;
-
-  const handleChange = (value: string | number) => {
-    const selectedPlan = plan.find((item) => item.title === value);
-    if (!selectedPlan) return;
-
-    dispatch(
-      setSelectedPricePlan({
-        name: selectedPlan?.name,
-        title: selectedPlan?.title,
-        text: selectedPlan?.text,
-      })
-    );
-  };
+  const { price, price_postfix } = details[pricingPlanStatus];
 
   return (
     <StyledPricingCardHeader $variant={name as Variant}>
       <h4>{name}</h4>
-      <Container>
+      <PriceWrapper>
         <h2>{price}</h2>
         <div>
-          {pricingPlanStatus === "2_year" &&
-            details["1_year"].price !== "Free" && (
-              <OriginalPrice>
-                {details["1_year"].price} {details["1_year"].price_postfix}{" "}
-              </OriginalPrice>
-            )}
+          {/* Show original price if applicable (for annual plan) */}
+          {showOriginalPrice && (
+            <OriginalPrice>
+              {details["1_year"].price} {details["1_year"].price_postfix}
+            </OriginalPrice>
+          )}
           <p>{price_postfix}</p>
         </div>
-      </Container>
+      </PriceWrapper>
 
-      {plan?.length > 1 ? (
-        <DropdownBox>
+      {/* If multiple variants of the plan exist, show a dropdown */}
+      {plan.length > 1 ? (
+        <DropdownContainer>
           <Dropdown
             variant={name as Variant}
-            onChange={handleChange}
+            onChange={onPlanChange}
             value={title}
-            options={plan?.map((item) => {
-              return {
-                label: item.title,
-                value: item.title,
-              };
-            })}
-          ></Dropdown>
+            options={planOptions}
+          />
 
+          {/* Tooltip for additional information */}
           <Tooltip isInfo content={text}>
             <InfoSvgIcon color={variants[name as Variant].primaryColor} />
           </Tooltip>
-        </DropdownBox>
+        </DropdownContainer>
       ) : (
-        <PlanInfo $variant={name as Variant}>
+        // If only one plan, show title and tooltip
+        <PlanInfoContainer $variant={name as Variant}>
           <p dangerouslySetInnerHTML={{ __html: title }} />
           <Tooltip isInfo content={text}>
             <InfoSvgIcon color={variants[name as Variant].primaryColor} />
           </Tooltip>
-        </PlanInfo>
+        </PlanInfoContainer>
       )}
     </StyledPricingCardHeader>
   );
 };
+
+export default memo(PricingCardHeader);

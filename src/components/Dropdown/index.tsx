@@ -1,5 +1,7 @@
-import type React from "react";
-import { useState, useRef, useEffect } from "react";
+// Internal Components
+import { extractVisitorCount } from "../../store/utils";
+import type { Variant } from "../../types/pricing.types";
+import { useDropdown } from "./useDropdown";
 import {
   ChevronIcon,
   DropdownButton,
@@ -7,8 +9,6 @@ import {
   DropdownItem,
   DropdownMenu,
 } from "./styled.dropdown";
-import { extractVisitorCount } from "../../store/utils";
-import type { Variant } from "../../types/pricing.types";
 
 interface DropdownOption {
   value: string | number;
@@ -28,41 +28,18 @@ const Dropdown: React.FC<DropdownProps> = ({
   onChange,
   variant,
 }) => {
-  const [isOpen, setIsOpen] = useState(false);
-
-  const dropdownRef = useRef<HTMLDivElement>(null);
+  const { isOpen, toggle, close, dropdownRef } = useDropdown();
 
   const selectedOption = options.find((option) => option.value === value);
 
-  const handleToggle = () => {
-    setIsOpen(!isOpen);
-  };
-
   const handleSelect = (option: DropdownOption) => {
     onChange(option.value);
-    setIsOpen(false);
+    close();
   };
-
-  // Close dropdown when clicking outside
-  useEffect(() => {
-    const handleClickOutside = (event: MouseEvent) => {
-      if (
-        dropdownRef.current &&
-        !dropdownRef.current.contains(event.target as Node)
-      ) {
-        setIsOpen(false);
-      }
-    };
-
-    document.addEventListener("mousedown", handleClickOutside);
-    return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
-    };
-  }, []);
 
   return (
     <DropdownContainer ref={dropdownRef}>
-      <DropdownButton $variant={variant} onClick={handleToggle}>
+      <DropdownButton $variant={variant} onClick={toggle}>
         <span>
           {`Up to ${extractVisitorCount(
             selectedOption?.label || ""
@@ -74,8 +51,8 @@ const Dropdown: React.FC<DropdownProps> = ({
       <DropdownMenu $isOpen={isOpen}>
         {options.map((option) => (
           <DropdownItem
-            $variant={variant}
             key={option.value}
+            $variant={variant}
             $isSelected={option.value === value}
             onClick={() => handleSelect(option)}
           >

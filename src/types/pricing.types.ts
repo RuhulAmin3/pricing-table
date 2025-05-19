@@ -45,10 +45,6 @@ export interface PlanGroup {
   plans: Plan[]
 }
 
-// export interface Variant {
-//   $variant: "Free" | "Basic" | "Pro" | "Growth";
-// }
-
 export enum Variant {
   FREE = "Free",
   BASIC = "Basic",

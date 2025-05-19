@@ -32,6 +32,6 @@ export const DiscountLabel = styled.span`
   border-radius: 40px;
   cursor: pointer;
   color: #49687e;
-  padding: 5px 12px;
-  margin-left: 10px;
+  padding: 8px 12px;
+  margin-bottom:5px;
 `;

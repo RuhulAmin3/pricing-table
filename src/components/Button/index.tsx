@@ -1,3 +1,4 @@
+// Internal Imports
 import { Variant } from "../../types/pricing.types";
 import { StyledButton } from "./styled.button";
 

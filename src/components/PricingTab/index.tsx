@@ -1,3 +1,4 @@
+// Internal imports
 import { useAppDispatch, useAppSelector } from "../../store/hook";
 import { setPricingPlanStatus } from "../../store/slice";
 import {
@@ -7,7 +8,7 @@ import {
   TabWrapper,
 } from "./styled.pricingTab";
 
-export const PricingTab: React.FC = () => {
+const PricingTab= () => {
   const { planInfo, pricingPlanStatus } = useAppSelector(
     (state) => state.pricingPlans
   );
@@ -33,3 +34,5 @@ export const PricingTab: React.FC = () => {
     </TabWrapper>
   );
 };
+
+export default PricingTab;

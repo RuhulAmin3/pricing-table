@@ -3,6 +3,7 @@ import data from "../assets/data.json";
 import type { Feature, Plan, PlansInfo } from "../types/pricing.types";
 import { freeFeatureList, groupedPlans, proFeatureList } from "./utils";
 
+// Define the shape of the pricing slice state
 type PricingSliceState = {
   planInfo: { [key: string]: PlansInfo };
   plans: { [key: string]: Plan[] };
@@ -12,11 +13,12 @@ type PricingSliceState = {
   selectedPricePlan: { name: string; title: string; text: string }[];
 };
 
+// Initial state populated with static data
 const initialState: PricingSliceState = {
   planInfo: data?.plansInfo,
   plans: groupedPlans,
-  proFeatureList: proFeatureList,
-  freeFeatureList: freeFeatureList,
+  proFeatureList, 
+  freeFeatureList,
   pricingPlanStatus: "1_year",
   selectedPricePlan: [],
 };
@@ -25,10 +27,12 @@ const pricingPlanSlice = createSlice({
   name: "pricing-plans",
   initialState,
   reducers: {
+    // Update the active pricing duration (e.g., 1_year, 2_year)
     setPricingPlanStatus: (state, action) => {
       state.pricingPlanStatus = action.payload;
     },
 
+    // Add or update a selected pricing plan
     setSelectedPricePlan: (
       state,
       action: PayloadAction<{ name: string; title: string; text: string }>
@@ -38,22 +42,18 @@ const pricingPlanSlice = createSlice({
       );
 
       if (existingIndex !== -1) {
-        // Update existing
         state.selectedPricePlan[existingIndex].title = action.payload.title;
         state.selectedPricePlan[existingIndex].text = action.payload.text;
       } else {
-        // Add new
-        state.selectedPricePlan.push({
-          name: action.payload.name,
-          title: action.payload.title,
-          text: action.payload.text,
-        });
+        state.selectedPricePlan.push(action.payload); 
       }
     },
   },
 });
 
+// Export actions 
 export const { setPricingPlanStatus, setSelectedPricePlan } =
-  pricingPlanSlice.actions;
+  pricingPlanSlice.actions; 
 
+// Export reducer
 export const pricingPlanSliceReducer = pricingPlanSlice.reducer;
