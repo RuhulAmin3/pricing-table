@@ -12,6 +12,21 @@ import {
   DropdownBox,
 } from "./styled.pricingTable";
 import { variants } from "../../constant";
+import styled from "styled-components";
+
+const Container = styled.div`
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 10px;
+  font-size: 14px;
+  margin-bottom: 0.75rem;
+  color: ${({ theme }) => (theme as any).colors.textColor};
+`;
+
+const OriginalPrice = styled.del`
+  color: #ff424d;
+`;
 
 export const PricingCardHeader = ({
   plan,
@@ -56,16 +71,18 @@ export const PricingCardHeader = ({
   return (
     <StyledPricingCardHeader $variant={name as Variant}>
       <h4>{name}</h4>
-      <div>
+      <Container>
         <h2>{price}</h2>
-        <p>{price_postfix}</p>
-        {pricingPlanStatus === "2_year" &&
-          details["1_year"].price !== "Free" && (
-            <del>
-              {details["1_year"].price} {details["1_year"].price_postfix}{" "}
-            </del>
-          )}
-      </div>
+        <div>
+          {pricingPlanStatus === "2_year" &&
+            details["1_year"].price !== "Free" && (
+              <OriginalPrice>
+                {details["1_year"].price} {details["1_year"].price_postfix}{" "}
+              </OriginalPrice>
+            )}
+          <p>{price_postfix}</p>
+        </div>
+      </Container>
 
       {plan?.length > 1 ? (
         <DropdownBox>

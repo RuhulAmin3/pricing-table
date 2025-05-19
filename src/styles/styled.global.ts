@@ -62,8 +62,8 @@ select {
 
 export const RootContainer = styled.div`
   width: 100%;
-  max-width: 1200px;
+  max-width: 1080px;
   margin: 0 auto;
-  padding: 40px ${({ theme }) => (theme as any).spacing?.container || "20px"};
+  padding: 40px ${({ theme }) => (theme as any).spacing?.container || "15px"};
   padding-bottom: 50px;
 `;

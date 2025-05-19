@@ -4,8 +4,8 @@ import { variants } from "../../constant";
 
 export const StyledPricingTable = styled.div`
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
-  gap: 20px;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 16px;
 `;
 
 export const StyledPricingCard = styled.div<{ $variant: Variant }>`
@@ -41,15 +41,13 @@ export const PlanInfo = styled.div<{ $variant: Variant }>`
   padding: 4px 16px;
   border-radius: 50px;
   background-color: ${({ $variant }) => variants[$variant].secondaryColor};
-  margin-top: 14px;
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 4px;
-
   p {
     margin: 0;
-    font-size: 14px;
+    font-size: 12px;
     line-height: 24px;
     font-weight: 400;
     color: ${({ $variant }) => variants[$variant].primaryColor};
@@ -62,7 +60,7 @@ export const PlanInfo = styled.div<{ $variant: Variant }>`
 
 export const StyledFeatureLists = styled.div`
   margin-top: 16px;
-
+  min-height: 420px;
   h4 {
     font-size: 16px;
     line-height: 24px;
@@ -73,7 +71,7 @@ export const StyledFeatureLists = styled.div`
 `;
 
 export const FeatureListItem = styled.div`
-  padding-block: 8px;
+  padding-block: 10px;
   font-size: 14px;
   line-height: 14px;
   color: ${({ theme }) => (theme as any).colors.textColor};
@@ -88,4 +86,5 @@ export const DynamicFeature = styled.span`
 export const DropdownBox = styled.div`
   display: flex;
   align-items: center;
+  gap:5px;
 `;

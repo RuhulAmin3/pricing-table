@@ -14,7 +14,6 @@ export const StyledButton = styled.button<{ $variant: Variant }>`
   cursor: pointer;
   transition: background-color 0.3s ease;
   color: white;
-  margin-top: 40px;
 
   &:hover {
     background-color: ${({ $variant = Variant["FREE"] }) =>

@@ -12,12 +12,12 @@ export const DropdownButton = styled.button<{ $variant: Variant }>`
   align-items: center;
   justify-content: space-between;
   width: 100%;
-  max-width: 230px;
+  max-width: 200px;
   padding: 8px 12px;
   background-color: #f8f9fa;
   border: 1px solid ${({ $variant }) => variants[$variant].primaryColor};
   border-radius: 4px;
-  font-size: 14px;
+  font-size: 12px;
   cursor: pointer;
   transition: all 0.2s ease;
 
@@ -39,8 +39,6 @@ export const DropdownMenu = styled.div<{ $isOpen: boolean }>`
   position: absolute;
   top: calc(100% + 4px);
   left: 0;
-  width: 100%;
-  max-height: 200px;
   overflow-y: auto;
   background-color: white;
   border: 1px solid #e2e8f0;
@@ -56,12 +54,17 @@ export const DropdownItem = styled.div<{
   $isSelected: boolean;
   $variant: Variant;
 }>`
-  padding: 8px 12px;
+  padding: 12px;
   cursor: pointer;
   transition: background-color 0.2s ease;
   font-size: 14px;
   white-space: nowrap;
   overflow: hidden;
+  border-bottom: 1px solid #e2e8f0;
+  not-last-child {
+    border-bottom: none;
+  };
+
   background-color: ${({ $isSelected }) =>
     $isSelected ? "#f7fafc" : "transparent"};
   color: ${({
