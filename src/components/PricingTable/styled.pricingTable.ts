@@ -102,7 +102,7 @@ export const FeatureListItem = styled.div`
 export const DynamicFeature = styled.span`
   display: inline-block;
   font-size: 14px;
-  margin-bottom: 10px;
+  margin-bottom: 5px;
 `;
 
 export const DropdownBox = styled.div`

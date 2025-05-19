@@ -27,7 +27,7 @@ export const TooltipContent = styled.div<{
   font-size: 14px;
   line-height: 1.5;
   width: 100%;
-  min-width: 250px;
+  min-width: 220px;
   z-index: 10;
   opacity: ${({ $isVisible }) => ($isVisible ? 1 : 0)};
   visibility: ${({ $isVisible }) => ($isVisible ? "visible" : "hidden")};
